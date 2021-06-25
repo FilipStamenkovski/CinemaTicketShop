@@ -1,0 +1,47 @@
+﻿@model Cinema.Domain.DomainModels.Order
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="m-3">
+        <a class="btn btn-success">Order for: @Model.User.UserName</a>
+    </div>
+
+    @for (int i = 0; i < Model.TicketInOrders.Count; i++)
+    {
+        var item = Model.TicketInOrders.ElementAt(i).SelectedTicket;
+        var quantity = Model.TicketInOrders.ElementAt(i).Quantity;
+
+        if (i % 3 == 0)
+        {
+            @:<div class="row">
+            }
+
+
+            <div class="col-md-3 m-4">
+                <div class="card" style="width: 18rem; height: 35rem;">
+                    <img class="card-img-top" src="@item.MovieImage" style="height: 50%" alt="Image for movie!" />
+
+                    <div class="card-body">
+                        <h3 class="card-title">@item.MovieName</h3>
+                        <p class="card-text">@item.MovieGenre</p>
+                        <p class="card-text">@item.MovieTime</p>
+                        <h6>Price: @item.MoviePrice</h6>
+                        <br /><h6>Quantity: @quantity</h6>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            if (i % 3 == 2)
+            {
+            @:</div>
+        }
+    }
+
+</div>

@@ -1,0 +1,146 @@
+﻿@*@model IEnumerable<Cinema.Web.Models.Domain.Ticket>*@
+@model List<Cinema.Domain.DomainModels.Ticket>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="container">
+        <div class="m-3">
+            @if (User.IsInRole("Admin"))
+            {
+                <a class="btn btn-success" asp-controller="Tickets" asp-action="Create">Create new Ticket</a>
+            }
+
+        </div>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <form asp-controller="Tickets" asp-action="ExportTicketsByGenre" method="post">
+                <div class="row m-3">
+                    <div class="col-6">
+                        <select class="form-control" id="genre" name="genre">
+                            <option value="Action">Action</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Crime">Crime</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Mystery">Mystery</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Science Fiction">Science Fiction</option>
+                            <option value="Thriller">Thriller</option>
+                            <option value="War">War</option>
+                            <option value="Western">Western</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-info">
+                            Export Tickets by Genre
+                        </button>
+                    </div>
+                </div>
+            </form>
+        }
+
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            var item = Model[i];
+            @if (DateTime.UtcNow < item.MovieTime)
+            {
+                if (i % 3 == 0)
+                {
+                    @:<div class="row">
+                    }
+
+
+                    <div class="col-md-3 m-4">
+                        <div class="card" style="width: 18rem; height: 35rem">
+                            <img class="card-img-top" src="@item.MovieImage" style="height: 50%" alt="Image for movie!" />
+
+                            <div class="card-body">
+                                <h3 class="card-title">@item.MovieName</h3>
+                                <p class="card-text">@item.MovieGenre</p>
+                                <p class="card-text">@item.MovieTime</p>
+                                <h6>Price: @item.MoviePrice</h6>
+                            </div>
+
+                            <div class="card-footer">
+
+                                <a asp-controller="Tickets" asp-action="AddToCinemaCart" asp-route-id="@item.Id" class="btn btn-info">Add to Cart</a>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a asp-controller="Tickets" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">Edit</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                if (i % 3 == 2)
+                {
+                    @:</div>
+                }
+            }
+        }
+        </div>
+
+<!--<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.MovieName)*@
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.MovieImage)*@
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.MovieGenre)*@
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.MoviePrice)*@
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.MovieTime)*@
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieName)
+                </td>
+                <td>
+                    <img src="@item.MovieImage" style="max-width: 200px; max-height: 200px;" />
+                    @*@Html.DisplayFor(modelItem => item.MovieImage)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieGenre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MoviePrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieTime)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>-->

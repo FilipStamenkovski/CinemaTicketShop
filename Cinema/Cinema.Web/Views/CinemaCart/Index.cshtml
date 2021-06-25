@@ -1,0 +1,83 @@
+﻿@using Microsoft.Extensions.Options
+@inject IOptions<Cinema.Domain.StripeSettings> Stripe
+@model Cinema.Domain.DTO.CinemaCartDto
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <div class="row m-5">
+
+        @*<a asp-controller="CinemaCart" asp-action="OrderNow" class="btn btn-success">Order Now</a>*@
+
+        @if (Model.TotalPrice != 0)
+        {
+            <form asp-controller="CinemaCart" asp-action="PayOrder" method="post">
+                <article>
+                    <script src="https://checkout.stripe.com/checkout.js"
+                            class="stripe-button"
+                            data-key="@Stripe.Value.PublishableKey"
+                            data-locale="auto"
+                            data-description="Cinema Application Payment"
+                            data-currency="mkd"
+                            data-amount="@(Model.TotalPrice * 100)"
+                            data-label="Pay @Model.TotalPrice">
+                    </script>
+                </article>
+            </form>
+        }
+
+    </div>
+
+    <div class="row m-5">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Movie Name</th>
+                    <th scope="col">Movie Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Sum</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.TicketInCinemaCarts.Count == 0)
+                {
+                    <tr>
+                        <td colspan="5">No active Products</td>
+                    </tr>
+                }
+                else
+                {
+                    @for (int i = 0; i < Model.TicketInCinemaCarts.Count; i++)
+                    {
+                        var item = Model.TicketInCinemaCarts[i];
+
+                        <tr>
+                            <th scope="row">@(i + 1)</th>
+                            <td>@item.Ticket.MovieName</td>
+                            <td>@item.Ticket.MoviePrice</td>
+                            <td>@item.Quantity</td>
+                            <td>@(item.Ticket.MoviePrice * item.Quantity)</td>
+                            <td><a asp-controller="CinemaCart" asp-action="DeleteFromCinemaCart" asp-route-id="@item.Ticket.Id" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+            <tfoot class="thead-dark">
+                <tr>
+                    <th scope="col">Total Price: </th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col">@Model.TotalPrice</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

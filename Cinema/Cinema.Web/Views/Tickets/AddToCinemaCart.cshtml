@@ -1,0 +1,43 @@
+﻿@model Cinema.Domain.DTO.AddToCinemaCartDto
+
+@{
+    ViewData["Title"] = "Add To Cinema Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Add Selected Ticket to User Cart:</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddToCinemaCart" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TicketId" />
+            <!--<input type="hidden" value="@Model.TicketId" />-->
+            <!--<input type="hidden" asp-for="@Model.TicketId" />-->
+
+
+            <div class="form-group">
+                <label asp-for="SelectedTicket.MovieName"></label>
+                <input disabled asp-for="SelectedTicket.MovieName" class="form-control" />
+                <span asp-validation-for="SelectedTicket.MovieName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Quantity"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

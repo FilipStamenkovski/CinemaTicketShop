@@ -1,0 +1,14 @@
+C:\Users\dewiqPC\source\repos\CinemaApplication\Cinema\Cinema.Services\bin\Debug\netcoreapp3.1\Cinema.Services.deps.json
+C:\Users\dewiqPC\source\repos\CinemaApplication\Cinema\Cinema.Services\bin\Debug\netcoreapp3.1\Cinema.Services.dll
+C:\Users\dewiqPC\source\repos\CinemaApplication\Cinema\Cinema.Services\bin\Debug\netcoreapp3.1\Cinema.Services.pdb
+C:\Users\dewiqPC\source\repos\CinemaApplication\Cinema\Cinema.Services\bin\Debug\netcoreapp3.1\Cinema.Domain.dll
+C:\Users\dewiqPC\source\repos\CinemaApplication\Cinema\Cinema.Services\bin\Debug\netcoreapp3.1\Cinema.Repository.dll
+C:\Users\dewiqPC\source\repos\CinemaApplication\Cinema\Cinema.Services\bin\Debug\netcoreapp3.1\Cinema.Domain.pdb
+C:\Users\dewiqPC\source\repos\CinemaApplication\Cinema\Cinema.Services\bin\Debug\netcoreapp3.1\Cinema.Repository.pdb
+C:\Users\dewiqPC\source\repos\CinemaApplication\Cinema\Cinema.Services\obj\Debug\netcoreapp3.1\Cinema.Services.csprojAssemblyReference.cache
+C:\Users\dewiqPC\source\repos\CinemaApplication\Cinema\Cinema.Services\obj\Debug\netcoreapp3.1\Cinema.Services.AssemblyInfoInputs.cache
+C:\Users\dewiqPC\source\repos\CinemaApplication\Cinema\Cinema.Services\obj\Debug\netcoreapp3.1\Cinema.Services.AssemblyInfo.cs
+C:\Users\dewiqPC\source\repos\CinemaApplication\Cinema\Cinema.Services\obj\Debug\netcoreapp3.1\Cinema.Services.csproj.CopyComplete
+C:\Users\dewiqPC\source\repos\CinemaApplication\Cinema\Cinema.Services\obj\Debug\netcoreapp3.1\Cinema.Services.dll
+C:\Users\dewiqPC\source\repos\CinemaApplication\Cinema\Cinema.Services\obj\Debug\netcoreapp3.1\Cinema.Services.pdb
+C:\Users\dewiqPC\source\repos\CinemaApplication\Cinema\Cinema.Services\obj\Debug\netcoreapp3.1\Cinema.Services.csproj.CoreCompileInputs.cache
